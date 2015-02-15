@@ -21,8 +21,9 @@ type Location struct {
 	Zipcode     string  `json:"zipcode"`
 	Latitude    float64 `json:"latitude"`
 	Longitude   float64 `json:"longitude"`
-	MetroCode   string  `json:"metro_code"`
-	AreaCode    string  `json:"area_code"`
+	MetroCode   int     `json:"metro_code"`
+	AreaCode    int     `json:"area_code"`
+	Timezone    string  `json:"time_zone"`
 }
 
 func GetLocationForIP(ip string) (Location, error) {

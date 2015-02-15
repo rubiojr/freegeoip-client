@@ -1,6 +1,6 @@
 // Original code from https://github.com/johannesboyne/gofreegeoipclient
 // with some tweaks and fixes.
-package freegeoip_client
+package geoipc
 
 import (
 	"encoding/json"

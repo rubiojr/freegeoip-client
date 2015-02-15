@@ -12,13 +12,13 @@ const (
 )
 
 type Location struct {
-	Ip          string  `json:"ip"`
+	IP          string  `json:"ip"`
 	CountryCode string  `json:"country_code"`
 	CountryName string  `json:"country_name"`
 	RegionCode  string  `json:"region_code"`
 	RegionName  string  `json:"region_name"`
 	City        string  `json:"city"`
-	Zipcode     string  `json:"zipcode"`
+	ZipCode     string  `json:"zipcode"`
 	Latitude    float64 `json:"latitude"`
 	Longitude   float64 `json:"longitude"`
 	MetroCode   int     `json:"metro_code"`
@@ -31,11 +31,13 @@ func GetLocationForIP(ip string) (Location, error) {
 	if err != nil {
 		return Location{}, err
 	}
+
 	var loc Location
 	decoder := json.NewDecoder(res.Body)
 	if err := decoder.Decode(&loc); err != nil {
 		return Location{}, err
 	}
+
 	return loc, nil
 }
 

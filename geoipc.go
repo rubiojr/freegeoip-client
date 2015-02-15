@@ -5,10 +5,7 @@ package geoipc
 import (
 	"encoding/json"
 	"net/http"
-)
-
-const (
-	FREEGEOIP_URL = "https://freegeoip.net/json/"
+	"os"
 )
 
 type Location struct {
@@ -27,7 +24,7 @@ type Location struct {
 }
 
 func GetLocationForIP(ip string) (Location, error) {
-	res, err := http.Get(FREEGEOIP_URL + ip)
+	res, err := http.Get(getServerURL() + ip)
 	if err != nil {
 		return Location{}, err
 	}
@@ -43,4 +40,12 @@ func GetLocationForIP(ip string) (Location, error) {
 
 func GetLocation() (Location, error) {
 	return GetLocationForIP("")
+}
+
+func getServerURL() string {
+	if os.Getenv("FREEGEOIP_URL") != "" {
+		return os.Getenv("FREEGEOIP_URL" + "/json/")
+	} else {
+		return "https://freegeoip.net/json/"
+	}
 }
